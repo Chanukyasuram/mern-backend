@@ -1,9 +1,10 @@
 import dotenv from "dotenv";
-dotenv.config()
 import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routes/userRoute.js";
+import productRouter from "./routes/productRoute.js";
 import cors from 'cors'
+dotenv.config();
 const app = express();
 app.use(cors())
 app.use(express.json());
@@ -15,11 +16,11 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@cluster0.v802djb.mongo
    });
 });
 
-mongoose.connect(``).then(() => {
-     app.listen(8080, () => {
-     console.log("Server started");
-   });
-});
+// mongoose.connect(``).then(() => {
+//      app.listen(8080, () => {
+//      console.log("Server started");
+//    });
+// });
 app.use("/api/users", userRouter);
 
 
@@ -48,3 +49,9 @@ app.use("/api/users", userRouter);
 // app.use("/api/users", userRouter);
 
 // export default app;
+
+
+
+
+
+app.use("/api/products", productRouter);
